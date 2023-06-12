@@ -1,0 +1,41 @@
+Hello,
+
+Please do take the Assignment.
+Kindly let us know if you are not interested.So that we can close your Profile on Further rounds.
+
+Technical Assignment Task:
+
+Build a simple application which provides web services to facilitate group chat and manage data.
+
+Admin APIs (only admin can add users)
+
+- Manage Users (create user, edit user)
+
+Any User (normal user, admin user)
+
+–Authentication APIs (login, logout)
+
+Groups (Normal User)
+
+–Manage groups (create, delete, search and add members, etc). All users are visible to all users.
+
+Group Messages (Normal User)
+
+- Send messages in group
+
+- Likes message, etc
+
+Build simple e2e functional tests with python to prove APIs are working.
+
+Requirements
+
+– Use database of your choice
+– Use django and react as development techstack
+    
+Instructions:
+
+1. Duration of the task: 5 Days.
+
+2. Please submit your code to GitHub and share the link to Aman Jena at amanjena1234@gmail.com.
+
+3. If you have any queries or need clarification feel free to call our HR Manager on +91 8451039693.
