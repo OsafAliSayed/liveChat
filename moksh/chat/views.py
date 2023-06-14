@@ -65,7 +65,6 @@ def signout(request):
     return render(request, "group/groups.html")
 
 def creategroup(request):
-
     if request.method == 'POST':
         gname = request.POST['groupname']
         groups = Group.objects.all()
@@ -76,6 +75,9 @@ def creategroup(request):
                 })
         newGroup = Group(name=gname, slug=gname.lower())
         newGroup.save()
+        # update usergroup table
+        usergroup = UserGroup(user=request.user, group=newGroup)
+        usergroup.save()
         return HttpResponseRedirect(reverse("groups"))
     else:
         return render(request, "chat/creategroup.html")

@@ -8,8 +8,8 @@
         {% for group in groups %}
         <div class="card col-3 border border-secondary rounded m-4">
             <div class="card-body">
-              <h5 class="card-title">{{group.name}}</h5>
-              <a href="{% url 'group' group.slug %}" class="btn btn-primary">Join</a>
+              <h5 class="card-title">{{group.group.name}}</h5>
+              <a href="{% url 'group' group.group.slug %}" class="btn btn-primary">Join</a>
             </div>
         </div>
         {% endfor %}

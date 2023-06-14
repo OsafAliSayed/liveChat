@@ -1,0 +1,28 @@
+{% extends 'chat/layout.html' %}
+
+{% block title %}
+Edit users | {{ group.name }}
+{% endblock %}
+
+{% block body %}
+<div>
+    <h3>Edit users in {{group.name}}</h3>
+    <form action="{% url 'edituser' group.name %}" method="POST">
+        {% csrf_token %}
+        {% for user in users %}
+        {% if user.username != request.user.username %}
+        <div class="form-check">
+            <input type="checkbox" class="form-check-input" id="isadmin" name="{{user.username}}">
+            <label class="form-check-label" for="{{user.username}}">{{user.username}}</label>
+        </div>
+        {% else %}
+        <div class="form-check">
+            <input type="checkbox" class="form-check-input" id="isadmin" disabled checked name="{{user.username}}">
+            <label class="form-check-label" for="{{user.username}}">{{user.username}}</label>
+        </div>
+        {% endif %}
+        {% endfor %}
+        <button type="submit" class="btn btn-primary mt-3">Submit</button>
+    </form>
+</div>
+{% endblock %}

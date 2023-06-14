@@ -7,6 +7,9 @@
 {% block body %}
 <div>
     <h3>{{group.name}}</h3>
+    {% if request.user.isadmin %}
+    <a href="{% url 'edituser' group.name %}"> Edit users</a>
+    {% endif %}
     <div class="chat  rounded p-4" id="chat">
         {% for message in messages %}
         <div class="chat-messages bg-secondary p-3 m-2 text-light">

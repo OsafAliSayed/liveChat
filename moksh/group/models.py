@@ -16,6 +16,10 @@ class UserGroup(models.Model):
                 fields=['user', 'group'], name='unique_migration_host_combination'
             )
         ]
+
+    def __str__(self):
+        return f"User: {self.user.username}, Group: {self.group.name}"
+        
 class Message(models.Model):
     group = models.ForeignKey(Group, related_name='messages', on_delete=models.CASCADE)
     user = models.ForeignKey(User, related_name='messages', on_delete=models.CASCADE)
