@@ -1,0 +1,21 @@
+{% extends 'chat/layout.html' %}
+
+{% block title %}
+Create a new group
+{% endblock %}
+{% block body %}
+<div>
+    <form action="{% url 'creategroup' %}" method="POST">
+        {%  csrf_token %}
+        <div class="form-group">
+            <label>Enter group name: </label>
+            <input type="text" class="form-control" id="groupname" name="groupname" placeholder="Enter group name">
+        </div>
+        {% if message %}
+            <label class="text-danger">{{ message }}</label>
+        {% endif %}
+        <br>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
+{% endblock %}

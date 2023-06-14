@@ -5,6 +5,17 @@ class Group(models.Model):
     name = models.CharField(max_length=255)
     slug = models.SlugField(unique=True)
 
+
+class UserGroup(models.Model):
+    user = models.ForeignKey(User, related_name="usergroup", on_delete=models.CASCADE)
+    group = models.ForeignKey(Group, related_name="usergorup", on_delete=models.CASCADE)
+
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(
+                fields=['user', 'group'], name='unique_migration_host_combination'
+            )
+        ]
 class Message(models.Model):
     group = models.ForeignKey(Group, related_name='messages', on_delete=models.CASCADE)
     user = models.ForeignKey(User, related_name='messages', on_delete=models.CASCADE)

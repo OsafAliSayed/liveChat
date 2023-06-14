@@ -4,10 +4,11 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse
 from .models import *
+from group.models import *
 
 # Create your views here.
 def index(request):
-    return render(request, "chat/index.html")
+    return render(request, "group/groups.html")
 
 
 def signin(request):
@@ -21,7 +22,7 @@ def signin(request):
         # Check if authentication successful
         if user is not None:
             login(request, user)
-            return HttpResponseRedirect(reverse("index"))
+            return HttpResponseRedirect(reverse("groups"))
         else:
             return render(request, "chat/signin.html", {
                 "message": "Invalid username and/or password."
@@ -61,4 +62,20 @@ def signup(request):
 
 def signout(request):
     logout(request)
-    return render(request, "chat/index.html")
+    return render(request, "group/groups.html")
+
+def creategroup(request):
+
+    if request.method == 'POST':
+        gname = request.POST['groupname']
+        groups = Group.objects.all()
+        for group in groups:
+            if group.name == gname:
+                return render(request, "chat/creategroup.html", {
+                    "message": "Group name already exists!"
+                })
+        newGroup = Group(name=gname, slug=gname.lower())
+        newGroup.save()
+        return HttpResponseRedirect(reverse("groups"))
+    else:
+        return render(request, "chat/creategroup.html")
